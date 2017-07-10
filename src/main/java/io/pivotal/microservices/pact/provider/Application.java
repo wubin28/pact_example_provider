@@ -2,6 +2,7 @@ package io.pivotal.microservices.pact.provider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
 
-@Configuration
-@ComponentScan
-@EnableAutoConfiguration
+@SpringBootApplication
 @RestController
 public class Application {
+
+
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -25,6 +26,7 @@ public class Application {
 
     @RequestMapping(value = "/foos", method = RequestMethod.GET)
     public ResponseEntity<List<Foo>> foos() {
+        System.out.println("----------------");
         return new ResponseEntity<>(Arrays.asList(new Foo(42), new Foo(100)), HttpStatus.OK);
     }
 }
